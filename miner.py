@@ -10,7 +10,7 @@ import time
 import random
 
 def _print(content):
-    print('*' * 60 + '\n' + content + '\n' + '*' * 60)
+    print('*' * 60 + '\n - ' + content + '\n' + '*' * 60)
     
 def miner():
     # vamos obter pelo RPC do Bitcoin Core ou outro a mempool de um bloco ainda não minerado
