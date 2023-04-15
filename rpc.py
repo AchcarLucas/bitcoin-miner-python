@@ -23,7 +23,7 @@ def request_rpc(data):
         
     return response
     
-def getblocktemplate():
+def get_block_template():
     rpc_id = random.getrandbits(32)
     
     data = json.dumps({
@@ -34,7 +34,7 @@ def getblocktemplate():
     
     return request_rpc(data)
     
-def validateaddress(address):
+def validate_address(address):
     rpc_id = random.getrandbits(32)
     
     data = json.dumps({
@@ -45,7 +45,7 @@ def validateaddress(address):
     
     return request_rpc(data)
 
-def decoderawtransaction(data : str) -> dict:
+def decode_raw_transaction(data : str) -> dict:
     rpc_id = random.getrandbits(32)
     
     data = json.dumps({
@@ -56,7 +56,7 @@ def decoderawtransaction(data : str) -> dict:
     
     return request_rpc(data)
     
-def submitblock(block: dict) -> str:
+def submit_block(block: dict) -> str:
     submission = (
         tools.calc_block_header(block).hex() 
         + tools.get_le_var_hex(len(block['transactions']))

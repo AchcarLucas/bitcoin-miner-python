@@ -13,8 +13,8 @@ from helper import _print
 
 def miner():
     # vamos obter pelo RPC do Bitcoin Core ou outro a mempool de um bloco ainda não minerado
-    blockTemplate = rpc.getblocktemplate()['result']
-    scriptPubKey = rpc.validateaddress(config.wallet_address)['result']['witness_program']
+    blockTemplate = rpc.get_block_template()['result']
+    scriptPubKey = rpc.validate_address(config.wallet_address)['result']['witness_program']
     
     _print(f"Miner", f"miner the block {blockTemplate['height']} ... ")
     
@@ -33,7 +33,7 @@ def miner():
     _print(f"Target", f'{target_hash} with {tools.count_left_zeros(target_hash)} zeros')
     
     # vamos calcular agora o witness para colocar no final da coinbase
-    witnessResult = coinbase.witness_merkleroot(blockTemplate['transactions'])
+    witnessMarkleRootResult = coinbase.witness_merkleroot(blockTemplate['transactions'])
 
     # criação da coinbase
     _coinbase = {}
@@ -46,7 +46,7 @@ def miner():
         coinbaseText=coinbaseText, 
         blockHeight=blockTemplate['height'],
         scriptPubKey=scriptPubKey,
-        witnessMerkleRoot=witnessResult['witness_merkleroot']
+        witnessMerkleRoot=witnessMarkleRootResult['witness_merkleroot']
     )
 
     # criação da hash dentro da coinbase
@@ -54,32 +54,22 @@ def miner():
     
     _print(f'Coin Base', f"{_coinbase}")
     
-    # vamos inserir o bloco nas transactions, a coinbase será a primeira transação
+    """
+        vamos inserir o bloco nas transactions, a coinbase será a primeira transação
+        calculamos a main marke root para adicionar dentro do bloco principal
+        adicionamos o primeiro nonce
+    """
+    
     blockTemplate['transactions'].insert(0, _coinbase)
-    
-    # var para guardar as hashs para a criação do markle root
-    hashs = []
-    
-    # vamos agora percorrer as transações e obter as txids para a geração da markle root
-    # o processo é o mesmo que a criação do markle root da witness
-    for transaction in blockTemplate['transactions']:
-        if transaction.get('txid') is not None:
-            hashs.append(transaction['txid'])
-        else:
-            hashs.append(transaction['hash'])
-            
-    _print(f"Hashs txid", f"{hashs}")
-    
-    # adicionamos a markleroot criada no bloco principal
-    blockTemplate['merkleroot'] = tools.calc_merkle_root(hashs)
-
-    # adicionamos o primeiro nonce
+    blockTemplate['merkleroot'] = coinbase.main_markeroot(blockTemplate['transactions'])['main_merkleroot']
     blockTemplate['nonce'] = 0
 
-    # aqui já temos o nosso bloco pronto para a mineração
-    # já está com a nossa coinbase
-    # já está com as markle root criadas
-    # já está com a nonce, agora basta achar a solução
+    """
+        aqui já temos o nosso bloco pronto para a mineração
+            - já está com a nossa coinbase
+            - já está com as markle root criadas
+            - já está com a nonce, agora basta achar a solução
+    """
     _print(f"blockTemplate", f"{blockTemplate}")
     
     targetZeros = tools.count_left_zeros(target_hash)
@@ -106,7 +96,7 @@ def miner():
             
             _print(f"Submit", f"{blockTemplate}")
             
-            rpc.submitblock(blockTemplate)
+            rpc.submit_block(blockTemplate)
             break
    
 while True:

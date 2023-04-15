@@ -3,12 +3,11 @@
     - https://developer.bitcoin.org/reference/transactions.html
     - https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#commitment-structure
 """
-
 import tools
 import rpc
 
-from opcode import B_OPCODE
 from helper import _print
+from opcode import B_OPCODE
 
 def create_coinbase(
     coinbaseValue: int, 
@@ -87,11 +86,27 @@ def filter_transactions(transactions):
     
     return {'subtract_coinbase_fee' : subtractCoinbaseFee}
 
+def main_markeroot(transactions):
+     # var para guardar as hashs para a criação do markle root
+    hashs = []
+    
+    # vamos agora percorrer as transações e obter as txids para a geração da markle root
+    # o processo é o mesmo que a criação do markle root da witness
+    for transaction in transactions:
+        if transaction.get('txid') is not None:
+            hashs.append(transaction['txid'])
+        else:
+            hashs.append(transaction['hash'])
+            
+    _print(f"Hashs txid", f"{hashs}")
+    
+    return {'main_merkleroot' : tools.calc_merkle_root(hashs)}
+
 def witness_merkleroot(transactions):
     hashs = []
     
     for transaction in transactions:
-        dataDecode = rpc.decoderawtransaction(transaction['data'])['result']
+        dataDecode = rpc.decode_raw_transaction(transaction['data'])['result']
         
         _print(f"Transaction Decode", f"{dataDecode}")
         
