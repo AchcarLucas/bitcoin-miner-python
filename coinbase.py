@@ -67,7 +67,7 @@ def create_coinbase(
     return data
     
 # se ainda existir transactions faltando assinatura, não vamos tentar
-def check_transactions(transactions):
+def filter_transactions(transactions):
     subtract_coinbase_fee = 0
     
     print(f"transactions {transactions}")
