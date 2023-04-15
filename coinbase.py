@@ -33,13 +33,13 @@ from opcode import B_OPCODE
 # 19 76a914 93dfc045fcb43d7b0f1b5d327b0adc53e31ed9b9 + 88ac
 
 def create_coinbase(
-    coinbase_value: int, 
-    coinbase_text: str, 
-    block_height: int,
+    coinbaseValue: int, 
+    coinbaseText: str, 
+    blockHeight: int,
     scriptPubKey: str,
-    witness_merkleroot : str = ""
+    witnessMerkleRoot : str = None
 ) -> str:
-    coinbase_script = tools.encode_coinbase_height(block_height) + coinbase_text
+    coinbaseScript = tools.encode_coinbase_height(blockHeight) + coinbaseText
 
     #pubkey_script = "76a914" + scriptPubKey + "88ac"
     pubkey_script = (tools.get_le_hex(B_OPCODE.OP_DUP) 
@@ -49,15 +49,22 @@ def create_coinbase(
                     + tools.get_le_hex(B_OPCODE.OP_EQUALVERIFY) 
                     + tools.get_le_hex(B_OPCODE.OP_CHECKSIG))
     
-    return (
+    # Criando a coinbase
+    data = (
         "0200000001" + "0" * 64 + "ffffffff"
-        + str(tools.get_le_var_hex(len(coinbase_script) // 2))
-        + coinbase_script + "00000000" + "01" 
-        + str(tools.get_le_hex(coinbase_value, 8))
+        + str(tools.get_le_var_hex(len(coinbaseScript) // 2))
+        + coinbaseScript + "00000000" + "01" 
+        + str(tools.get_le_hex(coinbaseValue, 8))
         + str(tools.get_le_var_hex(len(pubkey_script) // 2))
         + pubkey_script
         + "00000000"
     )
+    
+    # se existir o Markle Root do Witness, adiciona na coinbase
+    if witnessMerkleRoot is not None:
+        tools.get_le_hex(B_OPCODE.OP_RETURN) +  witnessMerkleRoot
+        
+    return data
     
 # se ainda existir transactions faltando assinatura, não vamos tentar
 def check_transactions(transactions):
