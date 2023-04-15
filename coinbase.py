@@ -5,6 +5,7 @@
 """
 import tools
 import rpc
+import struct
 
 from helper import _print
 from opcode import B_OPCODE
@@ -63,6 +64,16 @@ def create_coinbase(
     data += tools.get_le_hex(0x0, 0x04)
         
     return data
+
+def calc_block_header(block: dict) -> bytes:
+    return (
+        struct.pack("<L", block["version"])
+        + bytes.fromhex(block["previousblockhash"])[::-1]
+        + bytes.fromhex(block["merkleroot"])[::-1]
+        + struct.pack("<L", block["curtime"])
+        + bytes.fromhex(block["bits"])[::-1]
+        + struct.pack("<L", block["nonce"])
+    )
     
 # se ainda existir transactions faltando assinatura, não vamos tentar
 def filter_transactions(transactions):

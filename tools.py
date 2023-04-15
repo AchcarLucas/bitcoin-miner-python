@@ -1,16 +1,6 @@
 import hashlib
 import struct
 import binascii
-
-def calc_block_header(block: dict) -> bytes:
-    return (
-        struct.pack("<L", block["version"])
-        + bytes.fromhex(block["previousblockhash"])[::-1]
-        + bytes.fromhex(block["merkleroot"])[::-1]
-        + struct.pack("<L", block["curtime"])
-        + bytes.fromhex(block["bits"])[::-1]
-        + struct.pack("<L", block["nonce"])
-    )
     
 def sha256_double_hash(target: str) -> str:
     sha256d_value = hashlib.sha256(hashlib.sha256(target).digest()).digest()
@@ -59,7 +49,6 @@ def calc_target(bits: str) -> bytes:
 def get_le_hex(value: int, width: int = 1) -> str:
     return value.to_bytes(width, byteorder='little').hex()
 
-
 def get_le_var_hex(value: int) -> str:
     if value < 0xfd:
         return get_le_hex(value)
@@ -69,7 +58,6 @@ def get_le_var_hex(value: int) -> str:
         return "fe" + get_le_hex(value, 4)
     return "ff" + get_le_hex(value, 8)
 
-
 def encode_coinbase_height(height: int) -> str:
     """
     https://github.com/bitcoin/bips/blob/master/bip-0034.mediawiki
@@ -77,7 +65,7 @@ def encode_coinbase_height(height: int) -> str:
     width = (height.bit_length() + 7) // 8
     return bytes([width]).hex() + get_le_hex(height, width)
 
-def count_left_zeros(text : str):
+def count_zeros_left(text : str):
     _count = 0
     for letter in text:
         if letter == '0':

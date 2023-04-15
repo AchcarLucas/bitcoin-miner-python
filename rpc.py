@@ -1,4 +1,5 @@
 import tools
+import coinbase
 import json
 import random
 import base64
@@ -58,7 +59,7 @@ def decode_raw_transaction(data : str) -> dict:
     
 def submit_block(block: dict) -> str:
     submission = (
-        tools.calc_block_header(block).hex() 
+        coinbase.calc_block_header(block).hex() 
         + tools.get_le_var_hex(len(block['transactions']))
     )
     for tx in block['transactions']:
