@@ -56,13 +56,13 @@ def calc_target(bits: str) -> bytes:
 
     return target
 
-def get_le_hex(value: int, width: int) -> str:
+def get_le_hex(value: int, width: int = 1) -> str:
     return value.to_bytes(width, byteorder='little').hex()
 
 
 def get_le_var_hex(value: int) -> str:
     if value < 0xfd:
-        return get_le_hex(value, 1)
+        return get_le_hex(value)
     if value <= 0xffff:
         return "fd" + get_le_hex(value, 2)
     if value <= 0xffffffff:

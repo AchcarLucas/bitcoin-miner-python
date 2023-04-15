@@ -8,6 +8,8 @@ import urllib.parse
 
 import config
 
+from helper import _print
+
 def request_rpc(data):
     request = urllib.request.Request(
         config.parameters["rpcurl"], 
@@ -62,20 +64,21 @@ def submitblock(block: dict) -> str:
     for tx in block['transactions']:
         submission += tx['data']
        
-    print("*"*60) 
-    print(f"data submit {submission}")
-    print("*"*60)
+    _print(f"Data Submit", f"{submission}")
 
     rpc_id = random.getrandbits(32)
+    
     data = json.dumps({
         "id": rpc_id, 
         "method": "submitblock", 
         "params": [submission]
     }).encode()
+    
     auth = base64.b64encode(bytes(
         config.parameters["rpcuser"] + ":" + config.parameters["rpcpass"], 
         "utf8"
     ))
+    
     request = urllib.request.Request(
         config.parameters["rpcurl"], 
         data, 
@@ -85,4 +88,4 @@ def submitblock(block: dict) -> str:
     # Send the RPC and parse response.
     with urllib.request.urlopen(request) as f:
         response = json.loads(f.read())
-        print(f"response submit {response}")
+        _print(f"Response Submit", f"{response}")

@@ -106,11 +106,11 @@ class B_OPCODE:
     
     # Reserved words
     OP_RESERVED = 0x50
-    OP_VER
-    OP_VERIF
-    OP_VERNOTIF
-    OP_RESERVED1
-    OP_RESERVED2
+    OP_VER = 0x62
+    OP_VERIF = 0x65
+    OP_VERNOTIF = 0x66
+    OP_RESERVED1 = 0x89
+    OP_RESERVED2 = 0x8a
     OP_NOP1 = 0xb0
     OP_NOP2 = 0xb1
     OP_NOP3 = 0xb2
