@@ -1,7 +1,9 @@
 """
-    - https://en.bitcoin.it/wiki/Transaction
-    - https://developer.bitcoin.org/reference/transactions.html
-    - https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#commitment-structure
+    - Alguns links que me ajudaram bastante nesse projeto!!!!
+        - https://en.bitcoin.it/wiki/Transaction
+        - https://developer.bitcoin.org/reference/transactions.html
+        - https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#commitment-structure
+        - https://coinsbench.com/building-blocks-of-bitcoin-mining-header-with-python-109bc505bdba
 """
 import tools
 import rpc
