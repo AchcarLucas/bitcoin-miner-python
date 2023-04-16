@@ -81,7 +81,9 @@ def calc_block_header(block: dict) -> bytes:
         + struct.pack("<L", block["nonce"])
     )
     
-# se ainda existir transactions faltando assinatura, não vamos tentar
+"""
+    Filtro para as transações, ignorar transações com fee zerado
+"""
 def filter_transactions(transactions):
     subtractCoinbaseFee = 0
     
