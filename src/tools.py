@@ -23,17 +23,11 @@ def calc_markle_witness(hashs: list[str]):
     # Convert transactions into big-endian bytes.
     
     _print("hash len", f"{len(hashs)}")
-    
-    keep_first = hashs[0]
-    keep_last = hashs[-1]
-    
+
     be_hashes = [
         bytes.fromhex(hash)[::-1]
         for hash in hashs
     ]
-    
-    be_hashes[0] = bytes.fromhex(keep_first)[::-1]
-    be_hashes[-1] = bytes.fromhex(keep_last)[::-1]
 
     # We combine the hashes pairwise until there is only 1 left.
     while len(be_hashes) > 1:
