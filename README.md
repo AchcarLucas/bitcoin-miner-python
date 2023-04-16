@@ -106,6 +106,8 @@ Estamos quase lá, com tudo configurado, execute o mineradoor usando python mine
 
 ### 👀 Condiderações finais
 
-Bom, se você tiver alguma dúvida ou mesmo precisa de alguma ajuda, entre em contato comigo: achcarlucas@gmail.com
+Agora com essa ideia em mente, o próximo passo será a criação de um rig de mineração usando FPGA e Verilog, mas ai já são projetos futuros :)
+
+Bom, se alguém tiver alguma dúvida ou mesmo precisa de alguma ajuda, entre em contato comigo pelo e-mail: achcarlucas@gmail.com
 
 #### by Lucas Campos Achcar
