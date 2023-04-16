@@ -6,6 +6,7 @@ class B_OPCODE:
     OP_PUSHDATA1 = 0x4c
     OP_PUSHDATA2 = 0x4d
     OP_PUSHDATA4 = 0x4e
+    OP_PUSHBYTES_36 = 0x24
     OP_1NEGATE = 0x4f
     OP_1 = OP_TRUE = 0x51
 

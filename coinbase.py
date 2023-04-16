@@ -4,12 +4,15 @@
         - https://developer.bitcoin.org/reference/transactions.html
         - https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#commitment-structure
         - https://coinsbench.com/building-blocks-of-bitcoin-mining-header-with-python-109bc505bdba
+        - https://livebook.manning.com/book/grokking-bitcoin/chapter-5/
+        - https://livebook.manning.com/book/grokking-bitcoin/chapter-10/1
+        - Book Grokking Bitcoin (Help me so much)
 """
 import tools
 import rpc
 import struct
 
-from helper import _print
+from helper import _print, _empty
 from opcode import B_OPCODE
 
 def create_coinbase(
@@ -23,7 +26,7 @@ def create_coinbase(
     pubkeyScript = (tools.get_le_hex(B_OPCODE.OP_DUP) 
                     + tools.get_le_hex(B_OPCODE.OP_HASH160) 
                     + tools.get_le_hex(len(scriptPubKey) // 2) 
-                    + scriptPubKey 
+                    + scriptPubKey
                     + tools.get_le_hex(B_OPCODE.OP_EQUALVERIFY) 
                     + tools.get_le_hex(B_OPCODE.OP_CHECKSIG))
     
@@ -31,7 +34,8 @@ def create_coinbase(
     output = 0x01
     
     if witnessMerkleRoot is not None:
-        witnessMerkleRootScript = tools.get_le_hex(B_OPCODE.OP_RETURN) + "24" + "aa21a9ed" + witnessMerkleRoot
+        witnessMerkleRootScript = tools.get_le_hex(B_OPCODE.OP_RETURN) + tools.get_le_hex(B_OPCODE.OP_PUSHBYTES_36) + "aa21a9ed" + witnessMerkleRoot
+        # - witnessMerkleRootScript = witnessMerkleRoot
         # se considerar o witness, vamos ter 2 output
         output += 0x01
     
@@ -115,23 +119,41 @@ def main_markeroot(transactions):
     
     return {'main_merkleroot' : tools.calc_merkle_root(hashs)}
 
+"""
+    é necessário corrigir essa parte do código para fazer a geração
+    do witness_commitment, e o resultado tem que ser igual a do default_witness_commitment,
+    essa função vai ser necessária caso tenha alguma transação que não iremos incluir
+"""
 def witness_merkleroot(transactions):
     hashs = []
     
     for transaction in transactions:
+        # vamos pedir para o bitcoin core ou algum RPC para descompactar o raw 
+        # da transação em um json ou dict
         dataDecode = rpc.decode_raw_transaction(transaction['data'])['result']
         
         _print(f"Transaction Decode", f"{dataDecode}")
-        
-        # percorre todos os txinwitness de todos os vin
+    
         for vin in dataDecode.get('vin'):
-            if vin.get('txid') is not None:
-                hashs.append(vin.get('txid'))
+            wtxid = ""
+            scriptPubKey = vin.get('scriptSig')
+            if (vin.get('txid') is not None) and _empty(scriptPubKey['hex']):
+                if vin.get('txinwitness') is not None:
+                # nessa parte do código, a ordem importa,
+                # primeiro temos que adicionar os witness
+                # e depois adicionamos o txid do vin
+                    for txinwitness in vin.get('txinwitness'):
+                        wtxid += txinwitness
+                    wtxid += vin.get('txid')
+                    hashs.append(wtxid)
+            else:
+                _print("scriptSig Empty", f"{vin.get('txid')}")
     
     if len(hashs) == 0:
         return {'has_witness' : False, 'witness_merkleroot' : None}
     
     # como sabemos que temos witness, adicionar a markle witness da coinbase
+    # o da coinbase é o primeiro da lista
     hashs.insert(0, "00" * 32)
     
     witnessMerkleroot = tools.calc_merkle_root(hashs)

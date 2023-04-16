@@ -31,7 +31,8 @@ def miner():
     
     _print(f"Target", f'{targetHash} with {tools.count_zeros_left(targetHash)} zeros')
     
-    # vamos calcular agora o witness para colocar no final da coinbase
+    # vamos calcular agora o witness markle root para colocar no final da coinbase
+    # essa parte é necessário para conseguirmos validar transações com Segwit (witness)
     witnessMarkleRootResult = coinbase.witness_merkleroot(blockTemplate['transactions'])
 
     # criação da coinbase
@@ -40,11 +41,13 @@ def miner():
     #coinbaseText: str = DocumentGenerator().sentence().encode().hex()
     coinbaseText: str = "test".encode().hex()
 
+    # aqui já temos tudo que é necessário para criar a coinbase
     coinBase['data'] = coinbase.create_coinbase(
         coinbaseValue=blockTemplate['coinbasevalue'],  
         coinbaseText=coinbaseText, 
         blockHeight=blockTemplate['height'],
         scriptPubKey=scriptPubKey,
+        #witnessMerkleRoot=blockTemplate['default_witness_commitment']
         witnessMerkleRoot=witnessMarkleRootResult['witness_merkleroot']
     )
 

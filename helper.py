@@ -12,3 +12,5 @@ class bcolors:
 def _print(title : str, content : str):
     print(f"{bcolors.BOLD} {bcolors.OKCYAN} [{title}] - {bcolors.OKGREEN} {content} {bcolors.ENDC}")
     
+def _empty(content : str):
+    return content is None or content == ""
