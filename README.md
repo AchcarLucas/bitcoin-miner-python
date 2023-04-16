@@ -1,5 +1,4 @@
-# Bitcoin Miner Python
-#### Esse projeto foi desenvolvido por Lucas Campos Achcar
+# Bitcoin Miner Python 
 
 Esse projeto foi feito como uma forma de eu aprender um pouco mais sobre o bitcoin e suas estruturas, acabei focando bastante na parte da mineração 
 pois é uma área que eu gosto muito
@@ -108,3 +107,5 @@ Estamos quase lá, com tudo configurado, execute o mineradoor usando python mine
 ### Condiderações finais
 
 Bom, se você tiver alguma dúvida ou mesmo precisa de alguma ajuda, entre em contato comigo: achcarlucas@gmail.com
+
+#### by Lucas Campos Achcar
