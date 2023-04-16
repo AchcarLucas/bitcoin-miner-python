@@ -88,15 +88,15 @@ Dentro do bitcoin core, crie uma wallet e depois um endereço para receber as re
 
 Onde está` ```xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx``` adicione sua chave pública onde será recebido os bitcoins de recompennsas por encontrar o bloco e todas as fee (taxas) de todas as transações efetuadas no bloco
 
-Além disso, ainda na ````config.py``` na parte
+Além disso, ainda na ```config.py``` na parte
 
-```` 
+``` 
 "host": "127.0.0.1",
 "port": "8332",
 "rpcuser": "Achcar",
 "rpcpass": "BCQ_DJMYDj-qhevMqthkK4suxmJq_tXht5fZxXXkoXY=",
 "rpcurl": "http://127.0.0.1:8332"
-````
+```
 
 configure o rpcuser e o rpcpass, lembrando, o rpcpass não é a codificado, é a sua rpcpass que foi usado para gerar a codificação
 
