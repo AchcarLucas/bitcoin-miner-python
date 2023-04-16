@@ -21,8 +21,7 @@ O livro Grokking Bitcoin e muito bom e mostra em detalhes como funciona os proce
 
 ### 📋 Pré-requisitos
 
-Como eu fiz o projeto do zero, acabou que não necessitou a utilização de nenhuma biblioteca externa, apenas as bibliotecas internas
-já foram suficientes, são elas:
+Como eu fiz o projeto do zero, acabou que não necessitou a utilização de quase nenhuma biblioteca, são elas:
 
 ```
 base64
