@@ -5,9 +5,19 @@ pois é uma área que eu gosto muito
 
 ## 🚀 Começando
 
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
+Nesse projeto, acabei usando algumas fontes de consulta, são essas:
 
-Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
+```
+- https://en.bitcoin.it/wiki/Transaction
+- https://developer.bitcoin.org/reference/transactions.html
+- https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki#commitment-structure
+- https://coinsbench.com/building-blocks-of-bitcoin-mining-header-with-python-109bc505bdba
+- https://livebook.manning.com/book/grokking-bitcoin/chapter-5/
+- https://livebook.manning.com/book/grokking-bitcoin/chapter-10/1
+- Livro Grokking Bitcoin
+```
+
+O livro Grokking Bitcoin e muito bom e mostra em detalhes como funciona os processos do bitcoin, desde a criação da transações, criação da mempool e a mineração, recomendo demais :)
 
 ### 📋 Pré-requisitos
 
@@ -26,7 +36,7 @@ time
 
 ### 🔧 Instalação
 
-Como a mineração do bitcoin na mainnet (rede principal do bitcoin) é bastante dificil de minerar, podemos
+Como a mineração do bitcoin na mainnet (rede principal do bitcoin) é bastante dificil, podemos
 criar uma rede de teste, chamamos essa rede de regtest, só existe um único problema nela, ou talvez não seja
 um problema :) a regtest não simula dificuldade, qualquer bloco pode ser minerado com poucas iterações
 
@@ -61,21 +71,22 @@ Esse script ativa o regtest e ainda habilita o RPC
 Em ```USER_RPC``` e ```PASSWORD_RPC``` você irá configurar seu usuário e senha do RPC
 
 O nome de usuário é simples, não existe nenhuma codificação, já a senha, pode ser gerada usando o seguinte script ```https://github.com/bitcoin/bitcoin/blob/master/share/rpcauth/rpcauth.py```,
-baixa o script e execute o seguinte comando ```python3 rpcauth.py <username> <password>``` a saída já é sua rpcauth no padrão no bitcoin core
-outra alternativa é usar o seguinte site: https://jlopp.github.io/bitcoin-core-rpc-auth-generator/ que faz a geração do  rpcauth para você.
+baixa o script e execute o seguinte comando ```python3 rpcauth.py <username> <password>``` a saída já é sua rpcauth no padrão no bitcoin core.
+Outra alternativa é usar o seguinte site: https://jlopp.github.io/bitcoin-core-rpc-auth-generator/ que faz a geração do rpcauth para você.
 
-Bom, depois que você configurou o arquivo .config, salva e reinicie o bitcoin  core, você irá perceber que a cor mudou para o azul, parabéns, você está na regtest
+Bom, depois que você configurou o arquivo ```.conf```, salva e reinicie o bitcoin core, você irá perceber que a cor mudou para o azul, parabéns, você está na regtest.
+
+OBS: se desejar voltar para a mainnet, basta apagar tudo do .config e reabrir o bitcoin core
 
 ## ⚙️ Executando os testes
 
-Dentro do bitcoin core, crie uma wallet e depois um endereço em receber, faça a copia da chave pública para dentro do arquivo de configuração do python ```config.py``` na parte
+Dentro do bitcoin core, crie uma wallet e depois um endereço para receber as recomenpas do bloco, depois que você criou o endereço, faça a copia da chave pública para dentro do arquivo de configuração do python ```config.py``` na parte
 
 ```
     walletAddress = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
 ```
 
-Onde está` ```xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx``` adicione sua chave pública onnde será recebido os bitcoins de recompennsas por encontrar o bloco e todas as fee (taxas) que
-das transações que você efetuou no bloco
+Onde está` ```xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx``` adicione sua chave pública onde será recebido os bitcoins de recompennsas por encontrar o bloco e todas as fee (taxas) de todas as transações efetuadas no bloco
 
 Além disso, ainda na ````config.py``` na parte
 
@@ -91,56 +102,8 @@ configure o rpcuser e o rpcpass, lembrando, o rpcpass não é a codificado, é a
 
 ### 🔩 Analise os testes de ponta a ponta
 
-Com tudo configurado, execute o mineradoor usando python miner.py dentro de src, a cada 1 segundo (se quiser gerar por um teempo maior, mude o time.sleep no arquivo principal ```miner.py```) um bloco novo será gerado
+Estamos quase lá, com tudo configurado, execute o mineradoor usando python miner.py dentro de src e pronto, a cada 1 segundo (se quiser gerar por um tempo maior, mude o time.sleep no arquivo principal ```miner.py```) um bloco novo será gerado, lembra o walletAddress configurado ? os bitcoins irão aparecer lá a cada novo bloco minerado, um outro detalhe, só é possível usar os bitcoins de blocos minerados após 100 confirmações, então, deixe fazer a mineração antes de fazer transações na regtest
 
-### ⌨️ E testes de estilo de codificação
+### Condiderações finais
 
-Explique que eles verificam esses testes e porquê.
-
-```
-Dar exemplos
-```
-
-## 📦 Implantação
-
-Adicione notas adicionais sobre como implantar isso em um sistema ativo
-
-## 🛠️ Construído com
-
-Mencione as ferramentas que você usou para criar seu projeto
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - O framework web usado
-* [Maven](https://maven.apache.org/) - Gerente de Dependência
-* [ROME](https://rometools.github.io/rome/) - Usada para gerar RSS
-
-## 🖇️ Colaborando
-
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
-
-## 📌 Versão
-
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
-
-## ✒️ Autores
-
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
-
-* **Um desenvolvedor** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
-
-Você também pode ver a lista de todos os [colaboradores](https://github.com/usuario/projeto/colaboradores) que participaram deste projeto.
-
-## 📄 Licença
-
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
-
-## 🎁 Expressões de gratidão
-
-* Conte a outras pessoas sobre este projeto 📢;
-* Convide alguém da equipe para uma cerveja 🍺;
-* Um agradecimento publicamente 🫂;
-* etc.
-
-
----
-⌨️ com ❤️ por [Armstrong Lohãns](https://gist.github.com/lohhans) 😊
+Bom, se você tiver alguma dúvida ou mesmo precisa de alguma ajuda, entre em contato comigo: achcarlucas@gmail.com
