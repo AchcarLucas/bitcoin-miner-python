@@ -109,7 +109,7 @@ configure o rpcuser e o rpcpass, lembrando, o rpcpass não é a codificado, é a
 
 Estamos quase lá, com tudo configurado, execute o mineradoor usando python miner.py dentro de src e pronto, a cada 1 segundo (se quiser gerar por um tempo maior, mude o time.sleep no arquivo principal ```miner.py```) um bloco novo será gerado, lembra o walletAddress configurado ? os bitcoins irão aparecer lá a cada novo bloco minerado, um outro detalhe, só é possível usar os bitcoins de blocos minerados após 100 confirmações, então, deixe fazer a mineração antes de fazer transações na regtest
 
-### 👀 Condiderações finais
+### 👀 Considerações finais
 
 Agora, com essa ideia em mente, o próximo passo será a criação de um rig de mineração usando FPGA e Verilog, mas ai já são projetos futuros :)
 
