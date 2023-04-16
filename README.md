@@ -34,6 +34,10 @@ struct
 time
 ```
 
+A única instalação obrigatória é a do essential_generators
+
+```pip install essential_generators```
+
 ### 🔧 Instalação
 
 Como a mineração do bitcoin na mainnet (rede principal do bitcoin) é bastante dificil, podemos
