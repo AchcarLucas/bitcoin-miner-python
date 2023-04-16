@@ -103,6 +103,9 @@ def filter_transactions(transactions):
     
     return {'subtract_coinbase_fee' : subtractCoinbaseFee}
 
+"""
+    Cria a markle-root do bloco
+"""
 def main_markeroot(transactions):
      # var para guardar as hashs para a criação do markle root
     hashs = []
