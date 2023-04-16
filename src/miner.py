@@ -106,4 +106,4 @@ if __name__ == "__main__":
         minersCount = 0
         miner()
         minersCount += 1
-        time.sleep(10)
+        time.sleep(1)
