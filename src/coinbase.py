@@ -13,7 +13,7 @@ import rpc
 import struct
 
 from helper import _print, _empty
-from opcode import B_OPCODE
+from opcode_bitcoin import B_OPCODE
 
 def create_coinbase(
     coinbaseValue: int, 
@@ -128,26 +128,7 @@ def witness_merkleroot(transactions):
     hashs = []
     
     for transaction in transactions:
-        # vamos pedir para o bitcoin core ou algum RPC para descompactar o raw 
-        # da transação em um json ou dict
-        dataDecode = rpc.decode_raw_transaction(transaction['data'])['result']
-        
-        _print(f"Transaction Decode", f"{dataDecode}")
-    
-        for vin in dataDecode.get('vin'):
-            wtxid = ""
-            scriptPubKey = vin.get('scriptSig')
-            if (vin.get('txid') is not None) and _empty(scriptPubKey['hex']):
-                if vin.get('txinwitness') is not None:
-                # nessa parte do código, a ordem importa,
-                # primeiro temos que adicionar os witness
-                # e depois adicionamos o txid do vin
-                    for txinwitness in vin.get('txinwitness'):
-                        wtxid += txinwitness
-                    wtxid += vin.get('txid')
-                    hashs.append(wtxid)
-            else:
-                _print("scriptSig Empty", f"{vin.get('txid')}")
+        hashs.append(transaction['hash'])
     
     if len(hashs) == 0:
         return {'has_witness' : False, 'witness_merkleroot' : None}
@@ -156,12 +137,11 @@ def witness_merkleroot(transactions):
     # o da coinbase é o primeiro da lista
     hashs.insert(0, "00" * 32)
     
-    witnessMerkleroot = tools.calc_merkle_root(hashs)
+    witnessMerkleroot = tools.calc_markle_witness(hashs)
     
     _print(f"Hashs Witness", f"{hashs}")
-    _print(f"witness Merkleroot", f"{witnessMerkleroot}")
+    _print(f"Witness Merkleroot", f"{witnessMerkleroot}")
     
     hasWitness = len(hashs) > 0
     
     return {'has_witness' : hasWitness, 'witness_merkleroot' : witnessMerkleroot}
-        
