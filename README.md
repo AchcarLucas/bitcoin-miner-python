@@ -80,7 +80,7 @@ OBS: se desejar voltar para a mainnet, basta apagar tudo do .config e reabrir o 
 
 ## ⚙️ Executando os testes
 
-Dentro do bitcoin core, crie uma wallet e depois um endereço para receber as recomenpas do bloco, depois que você criou o endereço, faça a copia da chave pública para dentro do arquivo de configuração do python ```config.py``` na parte
+Dentro do bitcoin core, crie uma wallet e depois um endereço para receber as recomenpas do bloco. Depois que você criou o endereço, faça a copia da chave pública para dentro do arquivo de configuração do python ```config.py``` na parte
 
 ```
     walletAddress = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
