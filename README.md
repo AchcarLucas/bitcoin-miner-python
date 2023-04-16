@@ -116,3 +116,9 @@ Agora, com essa ideia em mente, o próximo passo será a criação de um rig de 
 Bom, se alguém tiver alguma dúvida ou mesmo precisa de alguma ajuda, entre em contato comigo pelo e-mail: achcarlucas@gmail.com
 
 #### by Lucas Campos Achcar
+
+# Minerador
+![alt text](https://raw.githubusercontent.com/AchcarLucas/bitcoin-miner-python/main/img/minerando.png)
+
+# Receptor
+![alt text](https://raw.githubusercontent.com/AchcarLucas/bitcoin-miner-python/main/img/receptor.png)
