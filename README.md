@@ -100,11 +100,11 @@ Além disso, ainda na ```config.py``` na parte
 
 configure o rpcuser e o rpcpass, lembrando, o rpcpass não é a codificado, é a sua rpcpass que foi usado para gerar a codificação
 
-### 🔩 Analise os testes de ponta a ponta
+### 🔩 Vamos minerar!!!
 
 Estamos quase lá, com tudo configurado, execute o mineradoor usando python miner.py dentro de src e pronto, a cada 1 segundo (se quiser gerar por um tempo maior, mude o time.sleep no arquivo principal ```miner.py```) um bloco novo será gerado, lembra o walletAddress configurado ? os bitcoins irão aparecer lá a cada novo bloco minerado, um outro detalhe, só é possível usar os bitcoins de blocos minerados após 100 confirmações, então, deixe fazer a mineração antes de fazer transações na regtest
 
-### Condiderações finais
+### 👀 Condiderações finais
 
 Bom, se você tiver alguma dúvida ou mesmo precisa de alguma ajuda, entre em contato comigo: achcarlucas@gmail.com
 
