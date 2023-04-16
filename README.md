@@ -78,6 +78,8 @@ Bom, depois que você configurou o arquivo ```.conf```, salva e reinicie o bitco
 
 OBS: se desejar voltar para a mainnet, basta apagar tudo do .config e reabrir o bitcoin core
 
+Um outro detalhe, é normal o bitcoin core não conectar e aparecer uma quantidade de anos pois o único nó é ele, quando você começar a minerar, esse problema irá desaparecer
+
 ## ⚙️ Executando os testes
 
 Dentro do bitcoin core, crie uma wallet e depois um endereço para receber as recomenpas do bloco. Depois que você criou o endereço, faça a copia da chave pública para dentro do arquivo de configuração do python ```config.py``` na parte
