@@ -1,6 +1,6 @@
 import hashlib
 import binascii
-import tools
+
 from helper import _print
     
 def sha256_double_hash(target: str, invert : bool = True) -> str:
@@ -19,68 +19,6 @@ def sha256_hash(target: str, invert : bool = True) -> str:
         
     return binascii.hexlify(sha256d_value).decode("utf-8")
 
-"""# não é necessário colocar wtxid da coinbase
-def calc_markle_witness(hashs: list[str]):
-    # enquanto ainda tiver hashs, continua fazendo o processo
-    # para calcular o witness commitment
-    
-    print(f"original len_hashs {len(hashs)}")
-    
-    less = -3
-    
-    # vamos adicionar o primeiro elemento ao último caso as hashs for par
-    if len(hashs) % 2 != 0:
-        less = 1
-    
-    # adicionamos wtxid da coinbase
-    hashs.insert(0, ("00" * 32))
-    
-    for index, value in enumerate(hashs):
-        hashs[index] = (bytes.fromhex(value)[::-1]).hex()
-    
-    index = 0
-    insert = 0
-    len_hashs = len(hashs) - less
-    
-    print(f"len_hashs {len_hashs}")
-    
-    while len_hashs > 0:
-        a = hashs[index]
-        b = hashs[index + 1]
-        
-        print(f"hash[{index}] {(bytes.fromhex(a)[::-1]).hex()} - hash[{index + 1}] {(bytes.fromhex(b)[::-1]).hex()}")
-        
-        # pega os dois primeiros elementos mais a esquerda da arvore
-        c = a + b
-        
-        print(f"concat hash - {c}")
-        
-        # não vamos mais precisar do primeiro elemento mais a esquerda, então substituimos
-        # ele com o novo resultado
-        hashs[insert] = tools.sha256_double_hash(binascii.unhexlify(c), invert=False)
-        
-        _print(f"hashs[{insert}]", f"{(bytes.fromhex(hashs[insert])[::-1]).hex()}")
-        
-        # vamos avançar +2 casas a esquerda
-        index = index + 2
-        
-        # e vamos sempre inserir no próximo
-        insert = insert + 1
-        
-        # como estamos agrupando de dois e dois e usando o elemento mais a esquerda
-        # para guardar os resultados, vamos ignorar a metade da direita a cada rodada
-        # assim fica mais fácil de lidar com a arvore
-        if index > len_hashs:
-            len_hashs = len_hashs // 2
-            index = insert = 0
-
-    # a ultima iteração é com a witness reserved value, e pode ser usado no futuro como 
-    # algum dado extra para o bitcoin
-    witnessReservedValue = ("00" * 32)
-    final = tools.sha256_double_hash(binascii.unhexlify(hashs[0] + witnessReservedValue), invert=False)
-    _print(f"final", f"{(bytes.fromhex(final)[::-1]).hex()}")
-    return final"""
-    
 def calc_markle_witness(hashs: list[str]):
     # Convert transactions into big-endian bytes.
     
@@ -120,7 +58,7 @@ def calc_markle_witness(hashs: list[str]):
     
     _print(f"last hash with txid coinbase", f"{(bytes.fromhex(witnessLastHash)).hex()}")
     
-    resultWitnessLastHash = tools.sha256_double_hash(binascii.unhexlify(witnessLastHash), invert=False)
+    resultWitnessLastHash = sha256_double_hash(binascii.unhexlify(witnessLastHash), invert=False)
     
     _print(f"last hash", f"{(bytes.fromhex(resultWitnessLastHash)).hex()}")
     
