@@ -120,9 +120,7 @@ def main_markeroot(transactions):
     return {'main_merkleroot' : tools.calc_merkle_root(hashs)}
 
 """
-    é necessário corrigir essa parte do código para fazer a geração
-    do witness_commitment, e o resultado tem que ser igual a do default_witness_commitment,
-    essa função vai ser necessária caso tenha alguma transação que não iremos incluir
+    Cria a witness commitment para a coinbase
 """
 def witness_merkleroot(transactions):
     hashs = []
