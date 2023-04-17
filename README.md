@@ -3,7 +3,7 @@
 Esse projeto foi feito como uma forma de eu aprender um pouco mais sobre o bitcoin e suas estruturas, acabei focando bastante na parte da mineração 
 pois é uma área que eu gosto muito
 
-## Doações
+## 🎁Doações
 
 Caso tenha gostado do projeto e queira doar alguma quantia, estou dexiando meu endereço BTC
 
