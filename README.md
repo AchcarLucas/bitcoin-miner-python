@@ -5,7 +5,7 @@ pois é uma área que eu gosto muito
 
 ## 🎁Doações
 
-Caso tenha gostado do projeto e queira doar alguma quantia, estou dexiando meu endereço BTC
+Caso tenha gostado do projeto e queira doar alguma quantia, estou deixando meu endereço BTC
 
 ![bc1q46hf6gs0g80wx63zv5s0sumy9mvf9uthhzhq5t](https://raw.githubusercontent.com/AchcarLucas/bitcoin-miner-python/main/img/btc-qr.png)
 </br>
