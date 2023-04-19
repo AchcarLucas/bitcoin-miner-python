@@ -41,7 +41,7 @@ def miner():
     
     # aqui temos um extranonce para podermos trabalhar, caso a nonce chegar ao fim dos 0x7fffffff
     # alteramos essa parte
-    coinbaseText: str = ("/achcar-miner/" + DocumentGenerator().sentence()).encode().hex()
+    coinbaseText: str = ("/achcar-miner/" + DocumentGenerator().sentence()[:50]).encode().hex()
 
     # aqui já temos tudo que é necessário para criar a coinbase
     coinBase['data'] = coinbase.create_coinbase(
