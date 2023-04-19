@@ -46,6 +46,17 @@ def validate_address(address):
     
     return request_rpc(data)
 
+def get_blockchain_info():
+    rpc_id = random.getrandbits(32)
+    
+    data = json.dumps({
+        "id": rpc_id, 
+        "method": "getblockchaininfo", 
+        "params": []
+    }).encode()
+    
+    return request_rpc(data)
+
 def decode_raw_transaction(data : str) -> dict:
     rpc_id = random.getrandbits(32)
     
