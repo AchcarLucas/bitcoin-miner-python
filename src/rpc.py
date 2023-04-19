@@ -100,4 +100,4 @@ def submit_block(block: dict) -> str:
     # Send the RPC and parse response.
     with urllib.request.urlopen(request) as f:
         response = json.loads(f.read())
-        _print(f"Response Submit", f"{response}")
+        _print(f"Response Submit", f"{response}", True)
