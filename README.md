@@ -7,9 +7,9 @@ pois é uma área que eu gosto muito
 
 Caso tenha gostado do projeto e queira doar alguma quantia, estou deixando meu endereço BTC
 
-![bc1q46hf6gs0g80wx63zv5s0sumy9mvf9uthhzhq5t](https://raw.githubusercontent.com/AchcarLucas/bitcoin-miner-python/main/img/btc-qr.png)
+![bc1qq2l9v9nx6u8c0uhqt5pyt5v4jy6g977l4nsngv](https://raw.githubusercontent.com/AchcarLucas/bitcoin-miner-python/main/img/ca91d451-33d6-4d20-823a-c0290cc65561.jpeg)
 </br>
-bc1q46hf6gs0g80wx63zv5s0sumy9mvf9uthhzhq5t
+bc1qq2l9v9nx6u8c0uhqt5pyt5v4jy6g977l4nsngv
 
 ## 🚀 Começando
 
