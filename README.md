@@ -93,13 +93,13 @@ Um outro detalhe, é normal o bitcoin core não conectar e aparecer uma quantida
 
 ## ⚙️ Executando os testes
 
-Dentro do bitcoin core, crie uma wallet e depois um endereço para receber as recomenpas do bloco. Depois que você criou o endereço, faça a copia da chave pública para dentro do arquivo de configuração do python ```config.py``` na parte
+Dentro do bitcoin core, crie uma wallet e depois um endereço para receber as recompensas do bloco. Depois que você criou o endereço, faça a copia da chave pública para dentro do arquivo de configuração do python ```config.py``` na parte
 
 ```
     walletAddress = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
 ```
 
-Onde está` ```xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx``` adicione sua chave pública onde será recebido os bitcoins de recompennsas por encontrar o bloco e todas as fee (taxas) de todas as transações efetuadas no bloco
+Onde está` ```xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx``` adicione sua chave pública onde será recebido os bitcoins de recompensas por encontrar o bloco e todas as fee (taxas) de todas as transações efetuadas no bloco
 
 Além disso, ainda na ```config.py``` na parte
 
